@@ -1,6 +1,7 @@
 # Hetzner access and authentication
 hetzner_api_token = <value-from-hetzner-cloud-console>
 ssh_public_key = <custom-value>
+ssh_private_key_path = <custom-value>
 ssh_key_name_hetzner = <value-from-hetzner-cloud-console>
 hetzner_project_id = <custom-value>
 

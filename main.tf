@@ -15,6 +15,11 @@ variable "ssh_public_key" {
   # sensitive   = true
 }
 
+variable "ssh_private_key_path" {
+  description = "SSH private key path"
+  type        = string
+}
+
 variable "ssh_key_name_hetzner" {
   description = "Name of SSH public key as defined in Hetzner Cloud for this project"
   type        = string
@@ -120,7 +125,7 @@ resource "hcloud_server" "ubuntu_server" {
     timeout         = "1m"
     agent           = false
     target_platform = "unix"
-    private_key     = file("id_ed25519")
+    private_key     = file(var.ssh_private_key_path)
   }
 
   provisioner "remote-exec" {
@@ -233,7 +238,7 @@ resource "null_resource" "mount_volume" {
     timeout         = "1m"
     agent           = false
     target_platform = "unix"
-    private_key     = file("id_ed25519")
+    private_key     = file(var.ssh_private_key_path)
   }
 
   # these commands are provided by Hetzner on Volume creation in order to mount the volume into a server(s)
